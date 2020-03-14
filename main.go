@@ -6,7 +6,6 @@ import (
 	"math"
 )
 
-
 // 根据你的 贷款总额、分期数、还款金额 ， 计算一次性百分比手续费，计算年化利率
 
 //var (
@@ -25,26 +24,25 @@ func annualInterestRate(totalMoney float64, phase int, repayment float64) {
 	// 初始投资金额
 	initialInvestment := []float64{-totalMoney}
 
-	println(len(initialInvestment))
+	//println(len(initialInvestment))
 	for i := 0; i < phase; i++ {
 
 		initialInvestment = append(initialInvestment, repayment)
 
 	}
 
-	fmt.Println(initialInvestment)
+	//fmt.Println(initialInvestment)/
 	// 计算月均收益
 
 	irr := income(initialInvestment)
 
-	fmt.Println(irr)
-
-
+	//fmt.Println(irr)
 
 	// 计算年化收益率
-	actualization := math.Pow(1 + irr, 12) - 1.00
+	actualization := math.Pow(1+irr, 12) - 1.00
 
 	fmt.Println("年化利率为f%:", actualization)
+	fmt.Printf("年化利率为: %.6f\n", actualization)
 	// 月均还款(本金+利息)
 
 	averageMonthlyRepayment := totalMoney * irr * math.Pow(1+irr, float64(phase)) / (math.Pow(1+irr, float64(phase)) - 1)
@@ -54,33 +52,34 @@ func annualInterestRate(totalMoney float64, phase int, repayment float64) {
 	totalRepaymentInterest := totalMoney*float64(phase)*irr*math.Pow(1+irr, float64(phase))/(math.Pow(1+irr, float64(phase))-1) - totalMoney
 
 	// 还款总额为
-	totalrepayment := totalMoney*float64(phase)*irr*math.Pow(1+irr, float64(phase)) / (math.Pow(1+irr, float64(phase))-1)
+	totalrepayment := totalMoney * float64(phase) * irr * math.Pow(1+irr, float64(phase)) / (math.Pow(1+irr, float64(phase)) - 1)
 
-	fmt.Println("您每月平均还款为f%", averageMonthlyRepayment)
+	fmt.Println("您每月平均还款为6%", averageMonthlyRepayment)
+	fmt.Printf("您每月平均还款为: %.6f\n", averageMonthlyRepayment)
+	fmt.Println("----------------------------")
 	fmt.Println("----------------------------")
 	fmt.Println("您的贷款利息为f%", totalRepaymentInterest)
+	fmt.Printf("您的贷款利息为: %.6f\n", totalRepaymentInterest)
 	fmt.Println("您的总还款额为f%", totalrepayment)
+	fmt.Printf("您的总还款额为: %.6f\n", totalrepayment)
 
 }
 
-
-
 func income(initialInvestment []float64) float64 {
 
-	fmt.Println(len(initialInvestment))
-	fmt.Println()
-
-	var aaa = []float64(initialInvestment)
-
-	fmt.Println(aaa)
+	//fmt.Println(len(initialInvestment))
+	//fmt.Println()
+	//var aaa = []float64(initialInvestment)
+	//fmt.Println(aaa)
 	//irr, err := financial.IRR([]float64{-20000, 2789, 2789, 2789, 2789, 2789, 2789, 2789, 2789, 2789, 2789, 2789, 2789})
 	irr, err := financial.IRR(initialInvestment)
 
-	println(irr)
+	//println(irr)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	fmt.Printf("IRR is: %f", irr)
+	fmt.Println("IRR is:", irr)
+	fmt.Printf("IRR is: %.6f\n", irr)
 	//return
 	return irr
 }
@@ -88,8 +87,8 @@ func income(initialInvestment []float64) float64 {
 func main() {
 
 	var (
-		money float64
-		phase int
+		money     float64
+		phase     int
 		Repayment float64
 	)
 
@@ -107,12 +106,10 @@ func main() {
 
 	fmt.Scanf("%f", &Repayment)
 
-	fmt.Println("你的实际贷款利率为" )
-
+	fmt.Println("你的实际贷款利率为")
 
 	fmt.Println("..............................")
 
 	annualInterestRate(money, phase, Repayment)
-
 
 }
