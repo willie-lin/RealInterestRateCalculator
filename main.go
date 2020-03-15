@@ -40,7 +40,7 @@ func annualInterestRate(totalMoney float64, phase int, repayment float64) {
 	// 计算实际年化收益率
 	actualization := math.Pow(1+irr, 12) - 1.00
 
-	fmt.Println("年化利率为f%:", actualization)
+	//fmt.Println("年化利率为f%:", actualization)
 	fmt.Printf("年化利率为: %.6f\n", actualization)
 	// 月均还款(本金+利息)
 
@@ -53,13 +53,13 @@ func annualInterestRate(totalMoney float64, phase int, repayment float64) {
 	// 还款总额为
 	totalrepayment := totalMoney * float64(phase) * irr * math.Pow(1+irr, float64(phase)) / (math.Pow(1+irr, float64(phase)) - 1)
 
-	fmt.Println("您每月平均还款为6%", averageMonthlyRepayment)
+	//fmt.Println("您每月平均还款为%", averageMonthlyRepayment)
 	fmt.Printf("您每月平均还款为: %.6f\n", averageMonthlyRepayment)
+	//fmt.Println("----------------------------")
 	fmt.Println("----------------------------")
-	fmt.Println("----------------------------")
-	fmt.Println("您的贷款总利息为f%", totalRepaymentInterest)
+	//fmt.Println("您的贷款总利息为f%", totalRepaymentInterest)
 	fmt.Printf("您的贷款利息为: %.6f\n", totalRepaymentInterest)
-	fmt.Println("您的总还款额为f%", totalrepayment)
+	//fmt.Println("您的总还款额为f%", totalrepayment)
 	fmt.Printf("您的总还款额为: %.6f\n", totalrepayment)
 
 	fmt.Println("************************************")
@@ -76,8 +76,8 @@ func annualInterestRate(totalMoney float64, phase int, repayment float64) {
 	//Residualinterest := totalRepaymentInterest - firstinterest
 	// 剩余本金
 	remainingprincipal := totalMoney - (averageMonthlyRepayment - firstinterest)
-	fmt.Printf("----- 等额本息计算, 以 %d 个月为例 -----\n", phase)
-	fmt.Printf("第 %d 个月应还利息为: %.6f , 应还本金为 %.6f, 还款总额为 %.6f，剩余欠款 %.6f \n",
+	fmt.Printf("\n\n ----- 等额本息计算, 以 %d 个月为例 -----\n", phase)
+	fmt.Printf("第 %d 个月应还利息为: %.6f , 应还本金为: %.6f, 还款总额为: %.6f，剩余欠款: %.6f\n",
 		1, firstinterest, averageMonthlyRepayment-firstinterest, averageMonthlyRepayment, remainingprincipal)
 
 	//  第 n 个月还款
@@ -94,7 +94,7 @@ func annualInterestRate(totalMoney float64, phase int, repayment float64) {
 
 	fmt.Println("------------------------------------------------------")
 
-	fmt.Printf("\n\n ====假如 等额本金还款，以 %d 个月为例 ======", phase)
+	fmt.Printf("\n\n ====假如 等额本金还款，以 %d 个月为例 ======\n", phase)
 
 	monthlyPrincipalRepayment := totalMoney / float64(phase)
 
@@ -107,7 +107,7 @@ func annualInterestRate(totalMoney float64, phase int, repayment float64) {
 		curTotalMoney := monthlyPrincipalRepayment + currInterest
 		remainingmoney = remainingmoney - monthlyPrincipalRepayment
 
-		fmt.Printf("第 %d 个月应还利息为: %.6f, 应还本金为: %.6f, 还款总额为: %.6f，剩余欠款: %.6f\n ",
+		fmt.Printf("第 %d 个月应还利息为: %.6f, 应还本金为: %.6f, 还款总额为: %.6f，剩余欠款: %.6f\n",
 			i, currInterest, monthlyPrincipalRepayment, curTotalMoney, math.Abs(remainingmoney))
 
 	}
@@ -131,7 +131,7 @@ func income(initialInvestment []float64) float64 {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	fmt.Println("IRR is:", irr)
+	//fmt.Println("IRR is:", irr)
 	fmt.Printf("IRR is: %.6f\n", irr)
 	//return
 	return irr
